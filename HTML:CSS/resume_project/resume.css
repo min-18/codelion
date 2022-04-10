@@ -1,0 +1,129 @@
+/* 폰트 불러오기; 그냥 구글폰트에서 복붙하면됨. */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800&display=swap');
+
+* {
+    font-family: 'Montserrat';
+}
+
+/* 가장 큰 상자; A4용지 틀 */
+/* 그림자 넣기 ; 박스뿐 아니라 텍스트에도 그림자 넣을 수 있다. */
+.mainbox{
+    border: 1px solid rgb(160, 157, 157);
+    /* auto는 가로 중앙에 배치한다는 뜻. */
+    /* margin:0 auto;는 위아래 여백 없이 가로 중앙에 배치되는 가장 기본적 */
+    margin-left: auto;
+    margin-right: auto; 
+    width: 500px;
+    /* height:750px; */
+    /* height 값을 지정하지 않으면 내부 요소에 맞게 자동 조절됨. */
+
+    /* 색상 앞 4가지 요소는 그림자요소, rgba에서 a는 투명도 */
+    box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.1);
+    padding-left: 30px;
+    padding-right: 30px;
+}
+section {
+    margin-bottom: 24px;
+}
+/* 가장 상단 내부박스 */
+.title-box{
+    text-align: right;
+    padding-top: 20px;
+}
+.title-box p{
+    font-weight: bold;
+    color: #969494;
+
+}
+
+.title-box h1{
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+h2{
+    /* 아래밑줄 나타내기 위해서는 박스 아래부분만 표현 */
+    border-bottom: 1px solid #808080;
+    font-size: 20px;
+    color: #282828;
+    font-weight: lighter;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+.about-me-text{
+    font-size: 10px;
+    /* 추가로 글자크기와 줄간격이 1:1.6비율이면 읽기 편안하다고 한다. */
+    line-height: 16px;
+    font-weight: bold;
+}
+
+/* float 속성; 둥둥 떠다니기 때문에 다른 글씨나 그림과 겹칠 수 있음. */
+/* float를 이용해 좌우정렬 했음. */
+.title-text{
+    font-size: 12px;
+    font-weight: bolder;
+    float: left;
+    margin: 5px;
+    color: black;
+}
+.year-text{
+    font-size: 12px;
+    float: right;
+    margin: 5px;
+
+}
+.float-wrap{
+    /* float 요소들을 묶어주고 다른 html요소들이 float요소들과 겹치지 않게 됨. */
+    overflow: hidden;
+}
+
+.desc-text{
+    font-size: 9px;
+    color: #282828;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.desc-subtext{
+    font-size: 9px;
+    color: #282828;
+    padding-left: 20px;
+    margin-top: 6px;
+}
+
+.sns-img {
+    width: 20px;
+    height: 20px;
+}
+/* 이미지도 text-align으로 정렬할 수 있다. */
+/* 근데 이미지태그에 직접쓰면 안되고 (div)태그로 묶어서 해야 된다! */
+.sns-wrap {
+    text-align: right;
+    margin-bottom: 28px;
+}
+
+/* 이메일 부분에 마우스 올리면 색변하는 hover효과 */
+a.mail:hover {
+    color: coral;
+    transition: 0.3s;
+}
+
+/* 이미지 위에 마우스 올렸을 때 크기 커지는 hover효과 */
+/* 추가로 이미지가 확대되지만 전체 크기는 변하지 않게 하고 싶다면 overflow: hidden을 추가한다. */
+.sns-img:hover {
+    transition: 0.3s;
+    transform: scale(1.5);
+}
+
+footer{
+    font-size: 10px;
+    text-align: center;
+    background-color: #3A3845;
+    width: 560px;
+    color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+}

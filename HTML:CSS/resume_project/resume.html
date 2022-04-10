@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멋쟁이 이력서</title>
+    <link rel="stylesheet"  href="resume.css">
+        
+</head>
+<body>
+    <!-- A4형태의 전체박스 -->
+    <div class="mainbox">
+        <!-- 이름,가능한 언어 -->
+        <!-- 공통적인 처리를 해줄 때는 묶어서 하는 습관! -->
+        <section class="title-box">
+            <h1>멋쟁이</h1>
+            <p>HTML/CSS, JS, PYTHON ...</p>
+        </section>
+        <!-- ABOUT ME  -->
+        <section>
+            <h2>ABOUT ME</h2>
+            <!-- Lorem ipsum ; 텍스트 자동생성기 -->
+            <p class="about-me-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed vulputate malesuada diam at auctor. Nam suscipit, nisl sit amet hendrerit cursus, diam dui rutrum diam, ultrices scelerisque dolor sapien id risus. Suspendisse varius condimentum quam, ut dictum turpis laoreet non.</p>
+        </section>
+        <!-- EXPERIONCE -->
+        <section>
+            <h2>EXPERIONCE</h2>
+            <!-- 반복되는 구조는 같은 클래스로 묶어 한번에 css 먹이기 -->
+            <div class="float-wrap">
+                <p class="title-text">likelion univ.</p>
+                <p class="year-text">2022.3 -</p>
+            </div>
+            <p class="desc-text">Backend Part</p>
+
+            <div class="float-wrap">
+                <p class="title-text">chung-ang univ.</p>
+                <p class="year-text">2018.3 -</p>
+            </div>      
+            <p class="desc-text">Major : Lorem ipsum dolor sit akpd</p>
+
+        </section>
+        <!-- ACTIVITY -->
+        <section>
+            <h2>ACTIVITY</h2>
+            <div class="float-wrap">
+                <p class="title-text">Tenis Club</p>
+                <p class="year-text">2022.3 -</p>
+            </div>
+            <div class="float-wrap">
+                <p class="title-text">Wine Study</p>
+                <p class="year-text">2022.3 -</p>
+            </div>
+            <div class="float-wrap">
+                <p class="title-text">Book</p>
+                <p class="year-text">2019 -</p>
+            </div>
+            <p class="desc-text">Lorem ipsum dolor sit akpd</p>
+            <p class="desc-subtext">Investment</p>
+
+        </section>
+        <section>
+            <h2>Favorite Books</h2>
+            <div class="float-wrap">
+                <p class="title-text">MorningStar Successful investment 5principles
+                </p>
+            </div>
+            <p class="desc-text">Investment</p>
+            <p class="desc-subtext">MorningStar</p>
+
+            <div class="float-wrap">
+                <p class="title-text">Snowball</p>
+            </div>
+            <p class="desc-text">Autobiography</p>
+            <p class="desc-subtext">Warrent E. buffet</p>
+
+            <div class="float-wrap">
+                <p class="title-text">Sapiens</p>
+            </div>
+            <p class="desc-text">History</p>
+            <p class="desc-subtext">Yuval Noah Harari</p>
+
+        </section>
+        <!-- contact mailto복습 -->
+        <section>
+            <p class="title-text">Contact
+                <a href="mailto:doleme00@likelion.org" class="mail">doleme00@likelion.org</a>
+            </p>
+        </section>
+
+        <!-- 사진첨부 & 링크연결 -->
+        <!-- Tip) 무언가를 꾸며줄 때는 class를 지정해주는 것이 좋다. -->
+        <div class="sns-wrap">
+            <a href="https://ko-kr.facebook.com/"><img class="sns-img" src="facebook.png"></a>
+            <a href="https://www.instagram.com/?hl=ko"><img class="sns-img" src="instagram.png"></a>
+            <a href="https://kr.linkedin.com/"><img class="sns-img" src="likedin.png"></a>
+            <a href="https://twitter.com/?lang=ko"><img class="sns-img" src="twitter.png"></a>
+        </div>  
+
+    </div>
+    <footer>
+        <p>Copyright lsm rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<!-- 가장 큰 교훈은 css먹일 때 클래스나 태그로 공통된 부분 묶어서 처리해야 예쁘게 나온다는 점. -->
