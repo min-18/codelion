@@ -1,0 +1,47 @@
+<!-- value 와 innerHTML의 차이 -->
+<!-- innerHTML은 말그대로 HTML을 넣는 것이다. 태그안의 값을 넣고 싶을 때 사용.  -->
+<!-- 반대로 value는  -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자소서 글자수 계산기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        h1 {
+            margin-top: 30px;
+        }
+        #count {
+            float: right;
+        }
+    </style>
+</head>
+<body class='container'>
+    <h1>자기소개</h1>
+    <!-- js로 사용자가 어떤 이벤트일 때 어떤 동작을 하겠다 -->
+    <textarea class="form-control" onkeydown = "counter()" rows="3" id="jasoseol">내용을 입력해주세요.</textarea>
+    <span id="count">(0/200)</span>
+
+    <script>
+        function counter() {
+            // 근데 여기 innerHTML을 써버린다면? 이것은 값을 넣어줄 때 쓰는 것 같다.
+            var content = document.getElementById("jasoseol").value;
+            // 글자수가 200글자가 넘는다면 잘라내는 부분.
+            if (content.length > 200) {
+                // 200글자까지가 content 변수에 저장.
+                content = content.substring(0,200)
+                // html 텍스트상자부분에 200글자까지 저장된 content내용 들어감. ; 200글자 넘기면 안써짐.
+                document.getElementById("jasoseol").value = content 
+            }
+            // js에서는 파이썬과는 달리 다른 데이터종류라 하더라도(문자, 숫자 조합도 Ok) +로 연결할 수 있음.
+            // 텍스트의 길이를 넣어줌.
+            document.getElementById("count").innerHTML = "(" + content.length + "/200)";
+        }
+        // 처음 textarea에 입력된 글자도 세기 위해.
+        counter()
+
+    </script>
+</body>
+</html>
