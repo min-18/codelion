@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스타크래프트</title>
+    <style>
+        .background {
+            position: relative;
+            background-image: url('background.png');
+            background-size: 500px 330px;
+            width: 500px;
+            height: 330px;
+        }
+        #drone {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            left: 60px;
+        }
+        #bunker {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 80px;
+            right: 20px;
+        }
+        #spit {
+            display: none;
+            position: absolute;
+            top: 140px;
+            left: 150px;
+            width: 50px;
+            height: 30px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <h1 id='hp'>HP: 3</h1>
+    <div class='background'>
+        <img id='drone' src="drone.png" alt="drone">
+        <img id='spit' src="spit.png" alt="spit">
+        <img id='bunker' src="bunker.png" alt="bunker">
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <script>
+        var hp = 3
+        // 팁) jquery는 $(선택자).행위 형식이라는 걸 기억하면 도움된다.
+        // 드론이 클릭되었을 때 함수발동해서 동작일어남.
+       $("#drone").click(function() {
+        // 가려졌던 침이 보임.
+           $('#spit').fadeIn();
+        // 침이 이동하는 애니메이션    
+           $('#spit').animate({"left": "+=250px"});
+        // 침이 벙커에 맞고 사라짐. 그 이후에 동작해야해서 콜백기능활용.    
+           $('#spit').fadeOut(function(){
+               hp -= 1
+            // .text = 값 이 아니라 ()안에 값을 넣어야 한다는 것.   
+               $('#hp').text("HP: " + hp)
+            // 가정법 형식은 js와 같다.
+               if(hp == 0) {
+                   $('#bunker').fadeOut();
+               }
+           });
+            // jquery로 css를 조작하여 처음 위치로 돌아옴.
+           $('#spit').css({left : 150});
+        });
+    </script>
+</body>
+</html>
