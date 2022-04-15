@@ -18,7 +18,6 @@ function select() {
     // 오름차순 정렬
     lotto.sort((a,b)=>a-b);
     // lotto에 들어간 값 나타냄.
-    console.log(lotto)
     var num1 = document.querySelector('.num1')
     num1.innerHTML = lotto[0];
     var num2 = document.querySelector('.num2')
@@ -32,10 +31,19 @@ function select() {
     setTimeout(function() {num5.innerHTML = lotto[4]}, 4000);
     var num6 = document.querySelector('.num6')
     setTimeout(function() {num6.innerHTML = lotto[5]}, 5000);
+
+    // if문으로 배열안에 6개 숫자까지 넣을 수 있기 때문에 버튼 누를때마다 반복해서 새로 뽑으려면 배열을 비우는 작업이 필요.
+    // 근데 그냥 비우면 번호가 표시되기도 전에 비워지기 때문에 번호가 다 뜨고난 후 함수가 동작하도록 해야한다.
+    // 시간지연을 활용하거나 콜백함수 쓰면되겠다 판단.
+    // 근데 시간지연setTimeout을 쓰면 사용자가 반복해서 클릭했을 때 오류가 뜬다... 물론 번호가 다 뜨고난 후 새로뽑기 버튼을 누르는 것이 이상적이지만.
+    setTimeout(function() {lotto.length = 0}, 5000)
+    console.log(lotto)
+
 }
 
 var button = document.getElementById("button");
 button.addEventListener("click", select);
+
 console.log('Working');
 
 
