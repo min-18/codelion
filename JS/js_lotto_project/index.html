@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추첨기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>로또 번호 추첨기</h1>
+    <div class="button-part">
+        <div class='ready'>준비되셨나요?</div>
+
+        <!-- 버튼부분 -->
+        <!-- input타입으로 했을 때 버튼안에 글씨 넣는 방법?  -->
+        <button type="button" class="button" id="button">새로 뽑기</button>
+    </div>
+    <section class="lotto-num">
+        <div class="ball num1">1번</div>
+        <div class="ball num2">2번</div>
+        <div class="ball num3">3번</div>
+        <div class="ball num4">4번</div>
+        <div class="ball num5">5번</div>
+        <div class="ball num6">6번</div>
+
+    </section>
+    <!-- html, js 연결 ; 마지막부분에 적어주는 것이 좋다.
+/* script 태그는 <head>보다는 <body>태그 마지막부분에 추가해주는 것이 좋다. 
+<head>에 쓴다면 아래 <body>에 있는 정보를 다 읽지 않아서 오류가 뜰 수 있기 때문. 또 속도도 더 빠르다.
+만약 <head>에 쓴다면 오류방지 위해 window.onload = function() {script 내용}을 써주기. */ -->
+    <script defer src="lotto.js"></script>
+</body>
+</html>
+
+<!-- 과제/ 질문 -->
+<!-- html, js 파일 분리해서 연결시키기 -->
+<!-- 버튼 클릭했을 때 함수 발동 -->
+<!-- css디자인 -->
