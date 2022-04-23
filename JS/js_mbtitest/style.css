@@ -1,0 +1,10 @@
+article {
+    display: flex;
+    flex-direction: column;
+}
+
+#img {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}

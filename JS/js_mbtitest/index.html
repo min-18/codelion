@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+    <article class="start">
+        <!-- 부트스트랩을 사용해서 class로 css 컨트롤 가능. -->
+        <h1 class="mt-5 text-center">MBTI로 나의 연애성향찾기</h1>
+        <button type="button" class="btn btn-success mt-5" onclick="start();">테스트 시작하기</button>
+    </article>
+    
+    <article class="question mt-5">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+        <h2 id="title" class="mt-5 text-center">문제</h2>
+        <!-- 4종류 항목중에 뭐에 관한 항목인지 정보를 담기 위해 -->
+        <input id="type" type="hidden" value="EI">
+        <!-- 버튼 눌렀을 때 해당 값이 변하도록. -->
+        <button id="A" type="button" class="btn btn-primary mt-5">Primary</button>
+        <button id="B" type="button" class="btn btn-primary mt-5">Primary</button>
+    </article>
+
+    <article class="result">  
+        <!-- <image id="img" class="rounded-circle mt-5" src="lion.jpg" alt="" ></image> -->
+        <h2 id="animal" class="text-center mt-5">나랑 맞는 세렝게티 동물은?</h2>
+        <h3 id="explain" class="text-center mt-5">설명</h3>
+    </article>
+    <!-- 사용자 화면에는 안보이지만 내부적으로 값을 갖고 싶을 때 input hidden 많이 사용한다. -->
+    <!-- 쉽게 점수판이라고 생각. -->
+    <input id="EI" type="hidden" value="0">
+    <input id="SN" type="hidden" value="0">
+    <input id="TF" type="hidden" value="0">
+    <input id="JP" type="hidden" value="0">
+
+    <!-- 부트스트랩을 사용하기 위해 복붙. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        document.querySelector('.question').style.display = 'none';
+        document.querySelector('.result').style.display = 'none';
+        
+        // 몇번째 문제인지 알기 위해
+        num = 1
+        // 문제에 대한 정보를 담는 객체 생성 ; 다음문제로 넘어갈 때 문제정보를 이 객체에서 가져옴.
+        // js에서 객체는 파이썬의 딕셔너리(key:value)랑 구조가 같다.
+        var q = {
+            1 : {"title" : "문제 1번", 'type':'EI', 'A':'E', 'B':'I'},
+            2 : {"title" : "문제 2번", 'type':'EI', 'A':'E', 'B':'I'},
+            3 : {"title" : "문제 3번", 'type':'EI', 'A':'E', 'B':'I'},
+            4 : {"title" : "문제 4번", 'type':'SN', 'A':'S', 'B':'N'},
+            5 : {"title" : "문제 5번", 'type':'SN', 'A':'S', 'B':'N'},
+            6 : {"title" : "문제 6번", 'type':'SN', 'A':'S', 'B':'N'},
+            7 : {"title" : "문제 7번", 'type':'TF', 'A':'T', 'B':'F'},
+            8 : {"title" : "문제 8번", 'type':'TF', 'A':'T', 'B':'F'},
+            9 : {"title" : "문제 9번", 'type':'TF', 'A':'T', 'B':'F'},
+            10 : {"title" : "문제 10번", 'type':'JP', 'A':'J', 'B':'P'},
+            11: {"title" : "문제 11번", 'type':'JP', 'A':'J', 'B':'P'},
+            12: {"title" : "문제 12번", 'type':'JP', 'A':'J', 'B':'P'}
+        };
+        // 결과 담긴 객체 생성(이미지는 사자로 통일...)
+        var result = {
+            "INTJ" : {"animal":"돌고래", "explain":"돌고래 설명", "img":"lion.jpg"},
+            "INTP" : {"animal":"하마", "explain":"하마 설명", "img":"lion.jpg"},
+            "INFJ" : {"animal":"사자", "explain":"사자 설명", "img":"lion.jpg"},
+            "INFP" : {"animal":"호랑이", "explain":"호랑이 설명", "img":"lion.jpg"},
+            "ENTJ" : {"animal":"원숭이", "explain":"원숭이 설명", "img":"monkey.jpg"},
+            "ENTP" : {"animal":"치타", "explain":"치타 설명", "img":"lion.jpg"},
+            "ENFJ" : {"animal":"얼룩말", "explain":"얼룩말 설명", "img":"lion.jpg"},
+            "ENFP" : {"animal":"하이에나", "explain":"하이에나 설명", "img":"lion.jpg"},
+            "ISTJ" : {"animal":"누", "explain":"누 설명", "img":"lion.jpg"},
+            "ISTP" : {"animal":"코뿔소", "explain":"코뿔소 설명", "img":"lion.jpg"},
+            "ISFJ" : {"animal":"코끼리", "explain":"코끼리 설명", "img":"lion.jpg"},
+            "ISFP" : {"animal":"독수리", "explain":"독수리 설명", "img":"lion.jpg"},
+            "ESTJ" : {"animal":"타조", "explain":"타조 설명", "img":"lion.jpg"},
+            "ESTP" : {"animal":"박쥐", "explain":"박쥐 설명", "img":"lion.jpg"},
+            "ESFJ" : {"animal":"악어", "explain":"악어 설명", "img":"monkey.jpg"},
+            "ESFP" : {"animal":"도마뱀", "explain":"도마뱀 설명", "img":"lion.jpg"}
+
+        }
+        // display와 visibility의 차이
+        // 전자는 영역이 자체가 사라졌다가 생겼다하는 것. 후자는 영역은 유지되지만 보였다가 안보였다가 하는 것.
+        function start() {
+            document.querySelector('.start').style.display = 'none';
+            document.querySelector('.question').style.display = '';     //show
+        };
+        // value값 가져오고 값이 +1 되는 함수 발동 ; A버튼이 클릭됐을 때 동작하기 위해 addEventListener이용
+        // 만약 jQuery였다면 click(익명함수) 형태로 코르를 썼겠지만.
+        function getValue() {
+            var type = document.getElementById('type').value;
+            var preValue = document.getElementById(type).value;
+            document.getElementById(type).value = parseInt(preValue) + 1;
+            // 위코드는 작동하고 아래코드는 작동안하는 이유? = 질문
+            // preValue = parseInt(preValue) + 1
+            next();
+        };
+        // 다음 문제번호, 문제내용을 알려주는 함수.
+        function next() {
+            if (num == 13) {
+                document.querySelector('.question').style.display = 'none';
+                document.querySelector('.result').style.display = '';
+                mbti = '';
+                // 삼항 연산자 ; (조건) ? (참일 때) : (거짓일 때)
+                (document.getElementById('EI').value >= 2) ? mbti += 'E' : mbti += 'I';
+                (document.getElementById('SN').value >= 2) ? mbti += 'S' : mbti += 'N';
+                (document.getElementById('TF').value >= 2) ? mbti += 'T' : mbti += 'F';
+                (document.getElementById('JP').value >= 2) ? mbti += 'J' : mbti += 'P';
+                alert(mbti);
+                // 위 코드 첫줄이 아래 if문을 축약한 것.
+                // if (document.getElementById('EI').value >= 2) {
+                //     mbti += 'E'
+                // } else {
+                //     mbti += 'I'
+                // }
+                // result객체에 결과값을 다 적어놓고 mbti변수값에 따라 html의 값 변경
+                document.getElementById('animal').innerHTML = result[mbti]["animal"];
+                document.getElementById('explain').innerHTML = result[mbti]["explain"];
+                document.getElementById('img').setAttribute('src', result[mbti]["img"]);
+
+            } else {
+                // progressbar도 증가
+                var progressbar = document.querySelector('.progress-bar');
+                // jqery에서 attr이 setAttribute와 같다.
+                // calc 오타나지 않게 주의.
+                // +로 연산 가능.
+                progressbar.setAttribute('style', 'width: calc(100/12*'+num+'%)')
+                // document.querySelector('.progress-bar').style.cssText = 'width: clac(100/12*1%)';
+                // 몇번문제인지 문제 title 바꿔줌.
+                document.getElementById('title').innerHTML = q[num]['title'];
+                // 무슨 type에 관한 문제인지 hidden input태그안에 있는 type 변경
+                document.getElementById('title').value = q[num]['type'];
+                document.getElementById('A').innerHTML = q[num]['A'];
+                document.getElementById('B').innerHTML = q[num]['B'];
+                // num +1씩 증가
+                num++;
+            }
+        }
+        // 문제 1번부터 시작하기 위해
+        next();
+
+        var buttonA = document.getElementById('A');
+        buttonA.addEventListener('click', getValue);
+
+        var buttonB = document.getElementById('B');
+        // B버튼 눌렀을 때는 value값 바뀌지 않고 페이지 넘어감.
+        buttonB.addEventListener('click', next);
+
+    </script>
+</body>
+</html>
