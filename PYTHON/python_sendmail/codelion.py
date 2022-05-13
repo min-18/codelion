@@ -22,7 +22,8 @@ def sendEmail(address):
         print('정상적으로 메일을 보냈습니다.')
     else:
         print('유효한 이메일 형식이 아닙니다.')
-
+        
+# 구글 계정관리 -> 보안 -> 보안수준이 낮은 앱 엑세스 허용 해줘야함.
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465
 
