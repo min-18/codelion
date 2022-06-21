@@ -1,0 +1,26 @@
+<h1>제목</h1>
+{{ blog_detail.title}}
+<h2>날짜</h2>
+{{ blog_detail.date}}
+
+<h3>본문</h3>
+{{ blog_detail.body}} {% if blog_detail.photo %}
+<!-- 사진 보여주기 -->
+<!-- {{blog_detail.photo.url}} ; 이렇게 적어야 사진의 전체 url이 나타남.-->
+<img src="{{blog_detail.photo.url}}" alt="" />
+{% endif%}
+
+<h3>댓글</h3>
+<!-- action ; submit 버튼을 눌렀을 때 어떤 url로 이동시켜줘+어떤 정보와 함께 -->
+<form method="post" action="{% url 'create_comment' blog_detail.id %}">
+  <!-- post요청을 보낼 때 보안상 작성해주기 -->
+  {% csrf_token%} {{ comment_form }}
+  <input type="submit" />
+</form>
+
+<!-- 작성한 댓글들 보여질 부분 -->
+<!-- blog_detail.comment_set.all ; 특정 객체(특정 블로그글)를 참고하고 있는 모델의 집합(그 글의 댓글들 집합)을 모두 가져오고 싶을 때 -->
+{% for comment in blog_detail.comment_set.all %}
+<p>{{ comment }}</p>
+<hr />
+{% endfor %}

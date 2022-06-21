@@ -1,0 +1,26 @@
+<!-- 로그인 되었다면 -->
+{% if user.is_authenticated %} 안녕하세요, {{ user.username }}님! {% else %}
+아직 로그인되지 않았어요.. {% endif %}
+<a href="{% url 'login' %}">로그인</a>
+
+<h1>simple blog</h1>
+
+<!-- 블로그 글들의 목록  -->
+
+<!-- html 에서 for문 쓰기 위해 템플릿 언어 사용 -->
+<!-- QerySet 에 담긴 객체를 가져다 쓰려면 for문 이용해서 하나씩 처리  -->
+
+{% for post in posts %}
+<!-- a태그 클릭하면 detail url로 이동하고 기본키인 post.id 값을 함께 넘겨준다. -->
+<a href="{% url 'detail' post.id %}"><h3>{{ post.title }}</h3></a>
+<h5>{{ post.date }}</h5>
+<p>{{ post.body}}</p>
+<br />
+
+{% endfor %}
+<br /><br /><br />
+<!-- <a href="{% url 'new' %}">html로 새글 작성</a><br /> -->
+
+<!-- <a href="{% url 'formcreate' %}">django form으로 새글 작성</a><br /> -->
+
+<a href="{% url 'formcreate' %}">django model form으로 새글 작성</a>
