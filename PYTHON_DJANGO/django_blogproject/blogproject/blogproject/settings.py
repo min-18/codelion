@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 #보안파일
-secret_file = os.path.join(BASE_DIR, 'secrets.json')
+secret_file = os.path.join(BASE_DIR, 'secrets_copy.json')
 
 with open(secret_file) as f:
     secrets = json.loads(f.read())
