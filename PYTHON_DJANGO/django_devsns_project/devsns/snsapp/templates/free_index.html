@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Heading -->
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-success">자유게시판</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th width="70%">글 제목</th>
+            <th>작성 날짜</th>
+            <th>작성자</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in freeposts %}
+          <tr>
+            <td>
+              <a href="{% url 'freedetail' post.id %}">{{ post.title }}</a>
+            </td>
+            <td>{{ post.date }}</td>
+            <!-- post.author 까지만 적으면 참조하고 있는 User 객체가 뜸.. 디테일한 정보를 얻기 위해 .username 까지 -->
+            <td>{{ post.author.username}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 로그인 되면 글쓰기 버튼 뜨도록 분기. -->
+{% if user.is_authenticated %}
+<!-- 글쓰기 버튼 -->
+<a href="{% url 'freepostcreate' %}" class="btn btn-success btn-icon-split">
+  <span class="icon text-white-50">
+    <i class="fas fa-flag"></i>
+  </span>
+  <span class="text">글쓰기</span>
+</a>
+{% endif %} {% endblock %}

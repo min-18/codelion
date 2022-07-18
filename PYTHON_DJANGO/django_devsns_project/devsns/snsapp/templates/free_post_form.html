@@ -1,0 +1,17 @@
+{% extends 'base.html'%} {% block content%}
+
+<h1>새글 작성</h1>
+<form
+  action="{% url 'freepostcreate' %}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <!-- 모델폼 같은 경우에는 어떤 형태로 form을 보여줄지도 나타낼 수 있다. -->
+  <!-- 예를 들어  -->
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="새글 생성 " />
+</form>
+{% endblock%}
